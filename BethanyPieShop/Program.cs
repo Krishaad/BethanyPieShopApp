@@ -13,13 +13,13 @@ namespace BethanyPieShop
             bool checker = false;
             do
             {
-                Console.WriteLine("***********************************");
+                Console.WriteLine("************************************************************");
                 Console.WriteLine("Welcome to the Employee HR Manager!");
                 Console.WriteLine("1. Register Employee");
                 Console.WriteLine("2. Pay Employee");
                 Console.WriteLine("3. List Employee");
                 Console.WriteLine("4. Quit Application");
-                Console.WriteLine("***********************************");
+                Console.WriteLine("************************************************************");
                 string input = Console.ReadLine();
 
                 switch (input)
@@ -27,20 +27,25 @@ namespace BethanyPieShop
                     case "1":
                        // Console.WriteLine("Welcome to Register employee\n\n");
                         //checker = true;
+                       Console.Clear();
                         RegisterEmployee();
                         break;
                     case "2":
+                        Console.Clear();
                         Console.WriteLine("***Welcome to payroll***\n\n");
                         PayRoll();
                         //checker = true;
                         break;
                     case "3":
+                        Console.Clear();
                         //Console.WriteLine("Welcome to Employees list\n\n");
                         ListEmployees();
                         break;
                     case "4":
-                        Console.WriteLine("Are you sure you want to exit");
+                        Console.Clear();
                         checker = true;
+                        Console.WriteLine("You have been logged out");
+
                         break;
                     default:
                         Console.WriteLine("Please enter valid input\n");
@@ -73,8 +78,11 @@ namespace BethanyPieShop
             //Employee employee = new Employee(fname, lname, hourlyRate);
             employeeList.Add(new Employee(fname, lname, hourlyRate));
 
+            Console.WriteLine("************************************************************");
             //Console.WriteLine(employeeList[0].FirstName);
+            Console.Clear();
             Console.WriteLine($"Successfully added employee {fname} {lname}\n\n");
+            Console.WriteLine("************************************************************");
 
         }
 
@@ -89,8 +97,10 @@ namespace BethanyPieShop
             {
                 for (int i = 0; i < employeeList.Count(); i++)
                 {
-                    Console.WriteLine($"{i+1}. {employeeList[i].FirstName}  {employeeList[i].LastName}");
+                    Console.WriteLine("************************************************************");
+                    Console.WriteLine($"\n\n{i+1}. {employeeList[i].FirstName}  {employeeList[i].LastName}");
                     Console.WriteLine($"Hourly rate: {employeeList[i].Rate}\n\n");
+                    Console.WriteLine("************************************************************");
                 }
             }
             
@@ -111,9 +121,10 @@ namespace BethanyPieShop
             }
 
             int positinInArr = numPicked - 1;
-
+            Console.WriteLine("************************************************************");
             Console.WriteLine($"You picked {employeeList[positinInArr].FirstName}.\n{employeeList[positinInArr].FirstName}'s hourly rate is {employeeList[positinInArr].Rate}");
-            Console.WriteLine("Please enter how many hours worked");
+            Console.WriteLine("Please enter how many hours worked\n");
+            //Console.WriteLine("************************************************************");
             int hoursWorked;
 
             while (!int.TryParse(Console.ReadLine(), out hoursWorked))
@@ -122,24 +133,21 @@ namespace BethanyPieShop
             }
 
             double currentWage = hoursWorked * employeeList[positinInArr].Rate;
-
-            Console.WriteLine($"{employeeList[positinInArr].FirstName}'s weekly wage is {currentWage}");
-
+            double roundedWage = Math.Round(currentWage, 2);
+            Console.WriteLine("************************************************************");
+            Console.WriteLine($"{employeeList[positinInArr].FirstName}'s weekly wage is {roundedWage}");
+            Console.WriteLine("************************************************************");
 
         }
     }
     public class Employee
     {
-
-
-
         public Employee(string firstName, string lastName, double rate)
         {
             FirstName = firstName;
             LastName = lastName;
             Rate = rate;
         }
-
 
         public string FirstName
         {
